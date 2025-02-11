@@ -21,6 +21,16 @@ jobs:
       - name: Install wrangler
         run: npm install -g wrangler
       
+      - name: Check Required Variables
+        run: |
+          required_vars=("CF_API_TOKEN" "CF_ACCOUNT_ID" "ADMIN_USERNAME" "ADMIN_PASSWORD")
+          for var in "${required_vars[@]}"; do
+            if [ -z "${!var}" ]; then
+              echo "Error: Required variable $var is not set."
+              exit 1
+            fi
+          done
+      
       - name: Check and Create KV Namespace
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
