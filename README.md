@@ -14,6 +14,10 @@
 
 An online clipboard and file sharing service based on Cloudflare Workers. Supports Markdown, password protection, file uploads, and more.
 
+👉重构版：https://github.com/ling-drag0n/CloudPaste
+
+<details>
+    <summary>旧版部署教程，点我展开！</summary>
 <table>
   <tr>
     <td><img src="./image/image1.png" width="400"/></td>
@@ -356,6 +360,8 @@ MIT License
 - [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
 - [Vue 3 Documentation](https://v3.vuejs.org/)
 - [Marked Documentation](https://marked.js.org/)
+
+</details>
 
 ## Star History
 
