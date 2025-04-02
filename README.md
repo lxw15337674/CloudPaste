@@ -14,10 +14,10 @@
 
 An online clipboard and file sharing service based on Cloudflare Workers. Supports Markdown, password protection, file uploads, and more.
 
-👉重构版：https://github.com/ling-drag0n/CloudPaste
+👉Refactored version: https://github.com/ling-drag0n/CloudPaste
 
 <details>
-    <summary>旧版部署教程，点我展开！</summary>
+    <summary>Old version deployment tutorial, click to expand!</summary>
 <table>
   <tr>
     <td><img src="./image/image1.png" width="400"/></td>
