@@ -14,6 +14,10 @@
 
 一个基于 Cloudflare Workers 的在线剪贴板和文件分享服务。支持 Markdown、密码保护、文件上传等功能。
 
+👉重构版：https://github.com/ling-drag0n/CloudPaste
+
+<details>
+    <summary>旧版部署教程，点我展开！</summary>
 <table>
   <tr>
     <td><img src="./image/image1.png" width="400"/></td>
@@ -355,7 +359,8 @@ MIT License
 
 - [Cloudflare Workers 文档](https://developers.cloudflare.com/workers/)
 - [Vue 3 文档](https://v3.vuejs.org/)
-- [Marked 文档](https://marked.js.org/)
+- [Marked 文档](https://marked.js.org/)    
+</details>
 
 ## Star History
 
