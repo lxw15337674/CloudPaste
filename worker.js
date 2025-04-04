@@ -903,11 +903,12 @@ a.qr-btn {
   overflow-y: auto;
   position: relative;
   word-wrap: break-word;
+  word-break: normal; 
   overflow-wrap: break-word;
-  white-space: pre-wrap;
+  white-space: pre-line;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 0.8;
   width: 0;             /* 强制flex子项不超出容器 */
   min-width: 0;         /* 允许flex子项收缩 */
   min-width: calc(50% - 0.5rem); /* 确保最小宽度不会小于容器的一半减去间距 */
@@ -943,36 +944,87 @@ a.qr-btn {
   border-radius: 0 0 4px 0;
 }
 
-/* 编辑器预览区域的列表样式 */
+/* ===== 编辑器预览区域列表基础样式 ===== */
+.editor-container .preview ul,
 .editor-container .preview ol {
   list-style: none;
+  padding-left: 1.2em;
+  margin: -1px 2px;
+}
+
+/* ===== 一级无序列表 ===== */
+.editor-container .preview ul > li {
+  position: relative;
+  padding-left: 0.5em;
+  margin: -1px 2px;
+  line-height: 1.9;
+}
+
+.editor-container .preview ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.2em;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  background-color: #24292e;
+  border-radius: 50%;
+}
+
+/* ===== 二级无序列表 ===== */
+.editor-container .preview ul ul {
+  margin: 0.3em 0 0.3em 1em;
+  padding-left: 1em;
+}
+
+.editor-container .preview ul ul > li::before {
+  width: 4px;
+  height: 4px;
+  left: -1em;
+  background-color: #586069;
+}
+
+/* ===== 三级无序列表 ===== */
+.editor-container .preview ul ul ul {
+  margin: 0.3em 0 0.3em 1em;
+  padding-left: 1em;
+}
+
+.editor-container .preview ul ul ul > li::before {
+  width: 3px;
+  height: 3px;
+  left: -1em;
+  background-color: #6a737d;
+}
+
+/* ===== 一级有序列表 ===== */
+.editor-container .preview ol {
   counter-reset: preview-item;
-  padding-left: 2em;
-  margin: 0.2em 0;
 }
 
 .editor-container .preview ol > li {
-  counter-increment: preview-item;
   position: relative;
-  margin: 0.2em 0;
-  padding-left: 0.3em;
+  padding-left: 0.5em;
+  margin: -1px 2px;
+  line-height: 1.6;
+  counter-increment: preview-item;
 }
 
 .editor-container .preview ol > li::before {
   content: counter(preview-item) ".";
   position: absolute;
-  left: -2em;
-  width: 1.5em;
+  left: -2.2em;
+  width: 2em;
   text-align: right;
   color: #3498db;
   font-weight: 600;
 }
 
-/* 编辑器预览区域的嵌套列表样式 */
+/* ===== 二级有序列表 ===== */
 .editor-container .preview ol ol {
   counter-reset: preview-subitem;
-  margin: 0.2em 0;
-  padding-left: 1.5em;
+  margin: -1px 2px;
+  padding-left: 1em;
 }
 
 .editor-container .preview ol ol > li {
@@ -981,47 +1033,76 @@ a.qr-btn {
 
 .editor-container .preview ol ol > li::before {
   content: counter(preview-subitem) ".";
+  left: -2em;
+  color: #666;
 }
 
-/* 编辑器预览区域的无序列表样式 */
-.editor-container .preview ul {
-  list-style: none;
-  padding-left: 2em;
-  margin: 0.2em 0;
+/* ===== 三级有序列表 ===== */
+.editor-container .preview ol ol ol {
+  counter-reset: preview-subsubitem;
+  margin: -1px 2px;
+  padding-left: 1em;
 }
 
-.editor-container .preview ul > li {
-  position: relative;
-  margin: 0.2em 0;
-  padding-left: 0.3em;
+.editor-container .preview ol ol ol > li {
+  counter-increment: preview-subsubitem;
 }
 
-.editor-container .preview ul > li::before {
-  content: "•";
-  position: absolute;
-  left: -1.5em;
-  width: 1em;
-  text-align: center;
-  color: var(--text-color);
+.editor-container .preview ol ol ol > li::before {
+  content: counter(preview-subsubitem) ".";
+  left: -2em;
+  color: #888;
 }
 
-/* 编辑器预览区域的有序列表中的无序列表 */
-.editor-container .preview ol > li > ul {
-  padding-left: 1.5em;
-  margin: 0.2em 0;
+/* ===== 有序列表中的无序列表 ===== */
+.editor-container .preview ol ul {
+  margin: 0.3em 0;
+  padding-left: 1em;
 }
 
-.editor-container .preview ol > li > ul > li {
+.editor-container .preview ol ul > li {
   counter-increment: none;
 }
 
-.editor-container .preview ol > li > ul > li::before {
-  content: "•";
-  left: -1.5em;
-  width: 1em;
-  text-align: center;
-  color: var(--text-color);
-  font-weight: normal;
+.editor-container .preview ol ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1em;
+  top: 0.7em;
+  width: 4px;
+  height: 4px;
+  background-color: #586069;
+  border-radius: 50%;
+}
+
+/* ===== 无序列表中的有序列表 ===== */
+.editor-container .preview ul ol {
+  margin: 0.3em 0;
+  padding-left: 1em;
+  counter-reset: preview-nesteditem;
+}
+
+.editor-container .preview ul ol > li {
+  counter-increment: preview-nesteditem;
+}
+
+.editor-container .preview ul ol > li::before {
+  content: counter(preview-nesteditem) ".";
+  left: -2em;
+  width: 2em;
+  text-align: right;
+  color: #666;
+}
+
+/* ===== 列表内容样式 ===== */
+.editor-container .preview li > * {
+  margin: 0;
+  line-height: inherit;
+}
+
+.editor-container .preview li p {
+  display: inline;
+  margin: 0;
 }
 
 /* 防止文本选择时的闪烁 */
@@ -1041,7 +1122,7 @@ a.qr-btn {
 .content {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.0;
   color: var(--text-color);
   padding: 2rem;
   max-width: 100%;
@@ -1050,9 +1131,9 @@ a.qr-btn {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow-wrap: break-word;
+  white-space: pre-line; /* 保留换行符并自动换行 */ 空白
   word-wrap: break-word;
-  word-break: break-all;
-  white-space: pre-wrap; /* 保留换行符并自动换行 */
+  word-break: normal; ;
 }
 
 /* 段落样式 */
@@ -1352,28 +1433,73 @@ a.qr-btn {
   text-decoration: underline;
 }
 
-/* 列表基础样式优化 */
+/* ===== 列表基础样式 ===== */
 .content ul,
 .content ol {
   list-style: none;
-  padding-left: 1.2em; /* 统一列表基础内边距 */
-  margin: 0.2em 0; /* 减小列表整体间距 */
+  padding-left: 1.2em; 
+  margin: -1px 2px;
 }
 
-/* 有序列表样式 */
+/* ===== 一级无序列表 ===== */
+.content ul > li {
+  position: relative;
+  padding-left: 0.5em;
+  margin: -1px 2px;
+  line-height: 1.9;
+}
+
+.content ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.2em;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  background-color: #24292e;
+  border-radius: 50%;
+}
+
+/* ===== 二级无序列表 ===== */
+.content ul ul {
+  margin: 0.3em 0 0.3em 1em;
+  padding-left: 1em;
+}
+
+.content ul ul > li::before {
+  width: 4px;
+  height: 4px;
+  left: -1em;
+  background-color: #586069;
+}
+
+/* ===== 三级无序列表 ===== */
+.content ul ul ul {
+  margin: 0.3em 0 0.3em 1em;
+  padding-left: 1em;
+}
+
+.content ul ul ul > li::before {
+  width: 3px;
+  height: 3px;
+  left: -1em;
+  background-color: #6a737d;
+}
+
+/* ===== 一级有序列表 ===== */
 .content ol {
   counter-reset: item;
 }
 
-.content ol li {
+.content ol > li {
   position: relative;
   padding-left: 0.5em;
-  margin: 0.5em 0;
+  margin: -1px 2px;
   line-height: 1.6;
   counter-increment: item;
 }
 
-.content ol li::before {
+.content ol > li::before {
   content: counter(item) ".";
   position: absolute;
   left: -2.2em;
@@ -1383,81 +1509,111 @@ a.qr-btn {
   font-weight: 600;
 }
 
-/* 二级有序列表样式 */
+/* ===== 二级有序列表 ===== */
 .content ol ol {
   counter-reset: subitem;
-  margin: 0.5em 0;
-  padding-left: 1em; /* 统一嵌套列表内边距 */
+  margin: -1px 2px;
+  padding-left: 1em;
 }
 
-.content ol ol li {
+.content ol ol > li {
   counter-increment: subitem;
 }
 
-.content ol ol li::before {
+.content ol ol > li::before {
   content: counter(subitem) ".";
   left: -2em;
   color: #666;
 }
 
-/* 无序列表样式 */
-.content ul li {
-  position: relative;
-  padding-left: 0.5em;
-  margin: 0.5em 0;
-  line-height: 1.6;
+/* ===== 三级有序列表 ===== */
+.content ol ol ol {
+  counter-reset: subsubitem;
+  margin: -1px 2px;
+  padding-left: 1em;
 }
 
-.content ul li::before {
-  content: "•";
-  position: absolute;
-  left: -1em;
-  width: 1em;
-  text-align: center;
-  color: var(--text-color);
+.content ol ol ol > li {
+  counter-increment: subsubitem;
 }
 
-.content ul ul {
-  margin: 0.3em 0 0.3em 1em; /* 调整嵌套列表的间距 */
-  padding-left: 1em; /* 调整嵌套列表的内边距 */
+.content ol ol ol > li::before {
+  content: counter(subsubitem) ".";
+  left: -2em;
+  color: #888;
 }
 
-.content ul ul li::before {
-  content: "•";
-  font-size: 0.85em;
-  left: -1.2em;
-  top: 0.1em;
-}
-
-/* 有序列表中的无序列表 */
-.content ol li ul,
-.content ol li ol,
-.content ul li ul,
-.content ul li ol {
+/* ===== 有序列表中的无序列表 ===== */
+.content ol ul {
   margin: 0.3em 0;
   padding-left: 1em;
 }
 
-.content ol li ul li,
-.content ul li ul li {
+.content ol ul > li {
   counter-increment: none;
 }
 
-.content.ol li ul li::before,
-.content.ul li ul li::before {
-  content: "•";
+.content ol ul > li::before {
+  content: "";
   position: absolute;
-  left: -1.5em;
-  color: var(--text-color);
-  font-weight: normal;
+  left: -1em;
+  top: 0.7em;
+  width: 4px;
+  height: 4px;
+  background-color: #586069;
+  border-radius: 50%;
 }
 
-.content.ul li ol li::before {
-  left: -2.2em;
+/* ===== 无序列表中的有序列表 ===== */
+.content ul ol {
+  margin: 0.3em 0;
+  padding-left: 1em;
+  counter-reset: nesteditem;
+}
+
+.content ul ol > li {
+  counter-increment: nesteditem;
+}
+
+.content ul ol > li::before {
+  content: counter(nesteditem) ".";
+  left: -2em;
   width: 2em;
+  text-align: right;
+  color: #666;
 }
 
-/* 确保列表项内容对齐 */
+/* ===== 复杂嵌套 - 有序中无序中有序 ===== */
+.content ol ul ol {
+  counter-reset: complexitem;
+  margin: 0.3em 0;
+  padding-left: 1em;
+}
+
+.content ol ul ol > li {
+  counter-increment: complexitem;
+}
+
+.content ol ul ol > li::before {
+  content: counter(complexitem) ".";
+  left: -2em;
+  width: 2em;
+  color: #888;
+}
+
+/* ===== 复杂嵌套 - 无序中有序中无序 ===== */
+.content ul ol ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1em;
+  top: 0.7em;
+  width: 3px;
+  height: 3px;
+  background-color: #6a737d;
+  border-radius: 50%;
+}
+
+/* ===== 列表内容样式 ===== */
 .content li > * {
   margin: 0;
   line-height: inherit;
@@ -1466,6 +1622,11 @@ a.qr-btn {
 .content li p {
   display: inline;
   margin: 0;
+}
+
+/* 确保计数器不会干扰其他元素 */
+.content li:not(ol li) {
+  counter-increment: none;
 }
 
 .content input[type="checkbox"] {
@@ -2306,7 +2467,7 @@ a.qr-btn {
 /* 预览区域基础样式 */
 .preview {
   flex: 1;
-  padding: 1rem;
+  padding: 2rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow-y: auto;
@@ -2314,7 +2475,10 @@ a.qr-btn {
   color: var(--text-color);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.3;
+  white-space: pre-line; /* 保留换行符并自动换行 */ 空白
+  word-wrap: break-word;
+  word-break: normal; ;
 }
 
 /* 预览区域表格样式 */
@@ -2943,8 +3107,8 @@ createApp({
     const isRefreshing = ref(false);  // 添加刷新状态
     const customId = ref(''); // 添加自定义ID输入框的值
     // 添加新的状态变量
-    const allowTextUpload = ref(false);  // 控制文本上传
-    const allowFileUpload = ref(false);  // 控制文件上传
+    const allowTextUpload = ref(true);  // 控制文本上传
+    const allowFileUpload = ref(true);  // 控制文件上传
     const showPasswordDialog = ref(false);
     const passwordTarget = ref(null);
     const newPassword = ref('');
@@ -3430,6 +3594,8 @@ createApp({
 
     // 添加 isExpired 函数
     const isExpired = (expiryTime) => {
+      // 如果 expiryTime 为 null 或 undefined，表示永不过期
+      if (!expiryTime) return false;
       return new Date() > new Date(expiryTime);
     };
     // 修改有效分享数量的计算
@@ -4592,7 +4758,7 @@ createApp({
   template: \`
   <div class="container">
 
-  <a href="https://github.com/ling-drag0n/CloudPaste" 
+  <a href="https://github.com/ling-drag0n/CloudPaste-old" 
      target="_blank" 
      class="github-link" 
      title="Visit GitHub"
@@ -5607,8 +5773,8 @@ createApp({
       }
       
       // 文本分享的处理
-      // 如果 expiresAt.value 为 null，直接返回永不过期
-      if (expiresAt.value === null) return '永不过期';
+      // 如果 expiresAt.value 为 null/undefined，直接返回永不过期
+      if (!expiresAt.value) return '永不过期';
       
       try {
         const now = new Date();
@@ -7189,7 +7355,7 @@ async function handlePaste(request, env) {
       }
 
       const data = await request.json();
-      const { content, password: inputPassword, expiresIn, isMarkdown = false, customId = "", maxViews = 0, note = '' } = data;
+      const { content, password: inputPassword, expiresIn, isMarkdown = false, customId = "", maxViews = 0, note = "" } = data;
 
       if (!content) {
         return new Response(
@@ -7258,7 +7424,7 @@ async function handlePaste(request, env) {
       const paste = {
         content,
         isMarkdown,
-        note, 
+        note,
         createdAt: new Date().toISOString(),
         expiresAt: expiresIn === "never" ? null : utils.calculateExpiryTime(expiresIn)?.toISOString(),
         maxViews: parseInt(maxViews) || 0, // 添加这行
@@ -8295,7 +8461,7 @@ export default {
                       id: key.name,
                       type: "paste",
                       content: paste.content?.substring(0, 100) + "...", // 只获取前100个字符
-                      note: paste.note || '', // 添加备注字段
+                      note: paste.note || "", // 添加备注字段
                       createdAt: paste.createdAt,
                       expiresAt: paste.expiresAt,
                       hasPassword: !!paste.passwordHash,
@@ -8334,7 +8500,7 @@ export default {
                       type: "file",
                       filename: metadata.filename || object.key,
                       size: metadata.size || object.size,
-                      note: metadata.note || '', // 添加备注字段
+                      note: metadata.note || "", // 添加备注字段
                       createdAt: metadata.uploadedAt || object.uploaded,
                       expiresAt: metadata.expiresAt,
                       hasPassword: !!metadata.passwordHash,
@@ -8623,7 +8789,7 @@ export default {
                   expiresAt: paste.expiresAt,
                   maxViews: paste.maxViews,
                   viewCount: paste.viewCount,
-                  note: paste.note // 返回更新后的备注
+                  note: paste.note, // 返回更新后的备注
                 }),
                 {
                   headers: {
@@ -8769,7 +8935,7 @@ export default {
                   expiresAt: metadata.expiresAt,
                   maxViews: metadata.maxViews,
                   viewCount: metadata.viewCount,
-                  note: metadata.note // 返回更新后的备注
+                  note: metadata.note, // 返回更新后的备注
                 }),
                 {
                   headers: { "Content-Type": "application/json" },
