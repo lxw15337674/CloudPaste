@@ -11,6 +11,7 @@
 ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange?style=flat-square&logo=cloudflare)
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.x-green?style=flat-square&logo=vue.js)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
 
 An online clipboard and file sharing service based on Cloudflare Workers. Supports Markdown, password protection, file uploads, and more.
 
