@@ -12,8 +12,17 @@
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.x-green?style=flat-square&logo=vue.js)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 
+由[EdgeOne](https://edgeone.ai/?from=github)：提供CDN加速和安全保护服务
+
+<a href="https://edgeone.ai/?from=github"><img src="https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png" alt="Tencent Logo" height="25"></a>
+[![Powered by DartNode](https://dartnode.com/branding/DN-Open-Source-sm.png)](https://dartnode.com "Powered by DartNode - Free VPS for Open Source")
+
 An online clipboard and file sharing service based on Cloudflare Workers. Supports Markdown, password protection, file uploads, and more.
 
+👉Refactored version: https://github.com/ling-drag0n/CloudPaste
+
+<details>
+    <summary>Old version deployment tutorial, click to expand!</summary>
 <table>
   <tr>
     <td><img src="./image/image1.png" width="400"/></td>
@@ -356,6 +365,8 @@ MIT License
 - [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
 - [Vue 3 Documentation](https://v3.vuejs.org/)
 - [Marked Documentation](https://marked.js.org/)
+
+</details>
 
 ## Star History
 
